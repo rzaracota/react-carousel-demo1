@@ -15,29 +15,34 @@ type VideosProps =
 class Slide {
     name: string;
     uri: string;
+    key: string;
 
     constructor(name: string, uri: string) {
         this.name = name;
         this.uri = uri;
+        this.key = uri + name;
     }
 }
 
-const slides = [ { name: "racoon", uri: "https://www.thetimes.co.uk/imageserver/image/methode%2Ftimes%2Fprod%2Fweb%2Fbin%2F11fb3572-7380-11e7-8eac-856e9b33761e.jpg?crop=3000%2C1687%2C0%2C156" },
-                 { name: "opossum", uri: "https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwj_6PWc8YbbAhVS9GMKHalOA9UQjRx6BAgBEAU&url=http%3A%2F%2Fwww.havahart.com%2Fopossum-facts&psig=AOvVaw39tpl08UzjvGGaMLgEB7an&ust=1526445089053684" }] as Slide[];
+const slides = [ { key: "a", name: "racoon", uri: "/1.jpg" },
+                 { key: "b", name: "opossum", uri: "/2.jpg" },
+                 { key: "c", name: "rat", uri: "/3.jpg" } ] as Slide[];
 
 class Videos extends React.Component<VideosProps, {}> {
     public renderSlide(slide: Slide, index: number,
         array: Slide[]) {
-        return <div><h3>slide.name</h3><img src={slide.uri} alt={slide.name} /></div>;
+        return <div className="item" key={slide.key}><div className="row"><div className="col-md-4"><h3>{ slide.name }</h3></div></div>
+        <div className="row"><div className="col-md-4"><img className="img-responsive" src={slide.uri} alt={slide.name} /></div></div></div>;
     }
 
     public render() {
         var settings = {
             dots: true,
             infinite: true,
+            adaptiveHeight: true,
             speed: 500,
             slidesToShow: 1,
-            slidesToScroll: 1
+            slidesToScroll: 5
           };
 
         const Slider = Slick.default;
