@@ -4,12 +4,14 @@ import { Layout } from './components/Layout';
 import Home from './components/Home';
 import FetchData from './components/FetchData';
 import Counter from './components/Counter';
+import Module from './components/module';
 
 import Videos from './components/Videos';
 
 export const routes = <Layout>
     <Route exact path='/' component={ Home } />
-    <Route path='/counter' component={ Counter } />
-    <Route path='/fetchdata/:startDateIndex?' component={ FetchData } />
-    <Route path='/videos' component={ Videos } />
+    <Route path='/module' component={ Module } />
+    <Route path='/counter' component={ Counter as any } />
+    <Route path='/fetchdata/:startDateIndex?' component={ FetchData as any  } />
+    <Route path='/videos' component={ Videos as any } />
 </Layout>;
